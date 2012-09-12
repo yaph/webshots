@@ -11,9 +11,15 @@ saving them as PNG files using [PhantomJS](http://phantomjs.org).
 
 ## Usage
 
+Create several screenshots at common browser resolutions:
+
     webshots http://example.com
+
+Create one screenshot at given browser resolution:
+
+    webshots --width=300 --height=200 http://example.com
 
 ## About
 
-Written by [Ramiro Gómez](http://ramiro.org/) licensed under the 
-[MIT License](http://rg.mit-license.org/)
+Written by [Ramiro Gómez](http://ramiro.org/), licensed under the 
+[MIT License](http://rg.mit-license.org/).

@@ -11,6 +11,8 @@
 import argparse, os
 from subprocess import call
 
+phantomscript = os.path.join(os.path.dirname(__file__), 'webshots.js')
+
 # common screen resolutions from gs.statcounter.com
 resolutions = [
     [1440, 900], [1366, 768], [1280, 1024], [1280, 800], [1024, 768], # web
@@ -19,7 +21,12 @@ resolutions = [
 
 parser = argparse.ArgumentParser(description='webshots - create Web page screenshots')
 parser.add_argument('url')
-url = parser.parse_args().url
+parser.add_argument('--width', help='The width of the screenshots in pixels')
+parser.add_argument('--height', help='The height of the screenshots in pixels')
 
-for r in resolutions:
-    call(['phantomjs', os.path.join(os.path.dirname(__file__), 'webshots.js'), url, str(r[0]), str(r[1])])
+args = parser.parse_args()
+if args.width and args.height:
+    call(['phantomjs', phantomscript, args.url, args.width, args.height])
+else:
+    for r in resolutions:
+        call(['phantomjs', phantomscript, args.url, str(r[0]), str(r[1])])
