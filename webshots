@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# Create Web page with common browser resolutions for given URL and save them as
+# PNG files in current working directory.
+#
+# Requires PhantomJS: http://phantomjs.org/
+# Written by Ramiro Gómez http://ramiro.org/
+# MIT licensed: http://rg.mit-license.org/
+
+import argparse, os
+from subprocess import call
+
+# common screen resolutions from gs.statcounter.com
+resolutions = [
+    [1440, 900], [1366, 768], [1280, 1024], [1280, 800], [1024, 768], # web
+    [800, 600], [480, 800], [360, 640], [320, 480], [240, 320] # mobile
+]
+
+parser = argparse.ArgumentParser(description='webshots - create Web page screenshots')
+parser.add_argument('url')
+url = parser.parse_args().url
+
+for r in resolutions:
+    call(['phantomjs', os.path.join(os.path.dirname(__file__), 'webshots.js'), url, str(r[0]), str(r[1])])
