@@ -1,7 +1,8 @@
 # webshots - take Web page screenshots
 
 A utility for taking Web page screenshots with common browser resolutions and
-saving them as PNG files using [PhantomJS](http://phantomjs.org).
+saving them as PNG files using [PhantomJS](http://phantomjs.org). Read more 
+in this brief [introduction to webshots](http://geeksta.net/geeklog/web-page-screenshots-phantomjs-python/).
 
 ## Installation
 
