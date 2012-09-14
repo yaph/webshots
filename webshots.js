@@ -7,7 +7,7 @@ MIT licensed: http://rg.mit-license.org/
 */
 var page = require('webpage').create(),
     re_proto = /https?:\/\//,
-    re_conv = /[^\w\.-]/
+    re_conv = /[^\w\.-]/g
 
 var url2filename = function(url, w, h) {
     return url.replace(re_proto, '').replace(re_conv, '-') + '.' + w + 'x' + h + '.png'
