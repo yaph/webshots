@@ -6,11 +6,14 @@ Written by Ramiro Gómez http://ramiro.org/
 MIT licensed: http://rg.mit-license.org/
 */
 var page = require('webpage').create(),
-    re_proto = /https?:\/\//,
+    re_trim = /^https?:\/\/|\/$/g,
     re_conv = /[^\w\.-]/g
 
 var url2filename = function(url, w, h) {
-    return url.replace(re_proto, '').replace(re_conv, '-') + '.' + w + 'x' + h + '.png'
+    return url
+        .replace(re_trim, '')
+        .replace(re_conv, '-')
+        + '.' + w + 'x' + h + '.png'
 }
 
 var webshot = function(url, w, h) {
@@ -31,7 +34,7 @@ var webshot = function(url, w, h) {
     })
 }
 
-// phantom.args is deprecated in favor of system.args, but version 1.4.0 does 
+// phantom.args is deprecated in favor of system.args, but version 1.4.0 does
 // not seem to support the system module.
 if (3 !== phantom.args.length) {
     console.log('Usage: phantomjs webshots.js http://example.com 1024 768')
