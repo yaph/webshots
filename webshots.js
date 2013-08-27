@@ -26,6 +26,11 @@ var webshot = function(url, w, h) {
             window.setTimeout(function() {
                 page.clipRect = { top: 0, left: 0, width: w, height: h }
                 f = url2filename(url, w, h)
+                page.evaluate(function() {
+                    if ('transparent' === document.defaultView.getComputedStyle(document.body).getPropertyValue('background-color')) {
+                        document.body.style.backgroundColor = '#fff';
+                    }
+                });
                 console.log('Creating file: ' + f)
                 page.render(f)
                 phantom.exit()
