@@ -1,30 +1,38 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Create Web page with common browser resolutions for given URL and save them as
-# PNG files in current working directory.
+# Create Web page with common browser resolutions for given URL and save them
+# as PNG files in current working directory.
 #
 # Requires PhantomJS: http://phantomjs.org/
 # Written by Ramiro Gómez http://ramiro.org/
 # MIT licensed: http://rg.mit-license.org/
 
-import argparse, os
+import argparse
+import os
 from subprocess import call
 
+# Assumes that webshots.js is in same directory (or linked) as this script.
 phantomscript = os.path.join(os.path.dirname(__file__), 'webshots.js')
 
 # common screen resolutions from gs.statcounter.com
 resolutions = [
-    [1440, 900], [1366, 768], [1280, 1024], [1280, 800], [1024, 768], # web
-    [800, 600], [480, 800], [360, 640], [320, 480], [240, 320] # mobile
+    [1440, 900], [1366, 768], [1280, 1024], [1280, 800], [1024, 768],  # web
+    [800, 600], [480, 800], [360, 640], [320, 480], [240, 320]  # mobile
 ]
 
-parser = argparse.ArgumentParser(description='webshots - create Web page screenshots')
+parser = argparse.ArgumentParser(
+    description='webshots - create Web page screenshots')
 parser.add_argument('url')
 parser.add_argument('--width', help='The width of the screenshots in pixels')
 parser.add_argument('--height', help='The height of the screenshots in pixels')
 
 args = parser.parse_args()
+
+# Allow for URLs without the protocol part.
+if not args.url.startswith(('http://', 'https://')):
+    args.url = 'http://' + args.url
+
 if args.width and args.height:
     call(['phantomjs', phantomscript, args.url, args.width, args.height])
 else:

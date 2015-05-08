@@ -6,6 +6,7 @@ Written by Ramiro Gómez http://ramiro.org/
 MIT licensed: http://rg.mit-license.org/
 */
 var page = require('webpage').create(),
+    args = require('system').args,
     re_trim = /^https?:\/\/|\/$/g,
     re_conv = /[^\w\.-]/g
 
@@ -41,9 +42,9 @@ var webshot = function(url, w, h) {
 
 // phantom.args is deprecated in favor of system.args, but version 1.4.0 does
 // not seem to support the system module.
-if (3 !== phantom.args.length) {
-    console.log('Usage: phantomjs webshots.js http://example.com 1024 768')
+if (4 !== args.length) {
+    console.log('Usage: phantomjs $HOME/bin/webshots.js http://example.com 1024 768')
     phantom.exit()
 } else {
-    webshot(phantom.args[0], phantom.args[1], phantom.args[2])
+    webshot(args[1], args[2], args[3])
 }
