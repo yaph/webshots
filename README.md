@@ -7,8 +7,7 @@ in this brief [introduction to webshots](http://geeksta.net/geeklog/web-page-scr
 ## Installation
 
     git clone https://github.com/yaph/webshots.git
-    ln -s /path/to/webshots/webshots $HOME/bin
-    ln -s /path/to/webshots/webshots.js $HOME/bin
+    cd webshots; ./install.sh
 
 ## Usage
 
@@ -27,5 +26,6 @@ Create one screenshot at given browser resolution:
 
 ## About
 
-Written by [Ramiro Gómez](http://ramiro.org/), licensed under the
-[MIT License](http://rg.mit-license.org/).
+Written by [Ramiro Gómez](http://ramiro.org/) 
+Contributions by [Andy Hawkins](http://hawkins.tech/)  
+Licensed under the [MIT License](http://rg.mit-license.org/).
